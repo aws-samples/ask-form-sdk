@@ -1,0 +1,615 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ask-form-sdk</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">ask-form-sdk</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> ask-form-sdk</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="alexa-form-sdk">Alexa Form SDK</h1>
+				<h2 id="introduction">Introduction</h2>
+				<p>This Alexa Form SDK for Node.js provides support for creating skills for dynamic questions and answer forms.</p>
+				<h2 id="features">Features</h2>
+				<p>In order to support flexible and dynamic forms, this sample includes a number of advanced features.</p>
+				<ol>
+					<li>Conditional slot support (eg if answered &#39;yes&#39; to slot one, then prompt for slot two).</li>
+					<li>List disambiguation with support for custom prompts (eg I found 2 matches, did you mean &quot;X&quot;)</li>
+					<li>Decimal number support (eg &quot;negative three point one four&quot; as &quot;-3.14&quot;) including units of measure (eg 5 percent).</li>
+					<li>Numeric validate with custom prompts (eg require whole numbers, or min &lt;= value &lt;= max)</li>
+					<li>Skipping field collection in a form (eg &quot;skip&quot; to move to next record, or &quot;previous&quot; to go back).</li>
+					<li>Confirmation of form fields before delegating to save action.</li>
+				</ol>
+				<h2 id="getting-started">Getting started</h2>
+				<h3 id="using-the-template">Using the template</h3>
+				<p>Use the ASK CLI to <a href="https://developer.amazon.com/en-GB/docs/alexa/smapi/ask-cli-intro.html#create-new-skill">Create a new skill</a> with a template-url:</p>
+				<pre><code>ask <span class="hljs-keyword">new</span> --<span class="hljs-keyword">template</span>-url https:<span class="hljs-comment">//github.com/aws-samples/ask-form-template.git</span></code></pre><p>You are prompted to choose a method to host your skill&#39;s backend resources:</p>
+				<ul>
+					<li><code>Alexa-hosted-skills</code> (Do not choose this)</li>
+					<li><code>AWS with CloudFormation</code> (Choose this to for AWS Lambda with persistence to Amazon DynamoDB)</li>
+					<li><code>AWS Lambda</code> (Choose this if you want to deploy to AWS Lambda without AWS CloudFormation)</li>
+				</ul>
+				<p>You will then be warned you about downloading an unofficial template.</p>
+				<p>Input <strong>Yes</strong> to continue provide a skill name eg. <code>my-survey</code>.</p>
+				<pre><code>? Choose a <span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">to</span> <span class="hljs-title">host</span> <span class="hljs-title">your</span> <span class="hljs-title">skill</span>'<span class="hljs-title">s</span> <span class="hljs-title">backend</span> <span class="hljs-title">resources</span>:</span>  AWS <span class="hljs-keyword">with</span> CloudFormation
+[Warn]: CLI <span class="hljs-keyword">is</span> about <span class="hljs-keyword">to</span> download the skill template <span class="hljs-keyword">from</span> unofficial template https:<span class="hljs-comment">//github.com/aws-samples/ask-form-template.git. Please make sure you understand the source code to best protect yourself from malicious usage.</span>
+? Would you like <span class="hljs-keyword">to</span> <span class="hljs-keyword">continue</span> download the skill template?  Yes
+? Please <span class="hljs-keyword">type</span> <span class="hljs-keyword">in</span> your skill name: my-survey
+? Please <span class="hljs-keyword">type</span> <span class="hljs-keyword">in</span> your folder name <span class="hljs-keyword">for</span> the skill project (alphanumeric):  my-survey</code></pre><p>Change into your project directory, and list the contents.  You will see the template includes a <code>lambda</code> folder with a samples <code>forms</code> folder used to generate skill interaction model, as well as <code>infrastructure</code> to deploy cloud formation if required.</p>
+				<pre><code>$ cd my-survey
+$ tree
+.
+├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LICENSE</span>.</span></span>txt
+├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md
+├── ask-resources.json
+├── infrastructure
+│   └── cfn-deployer
+│       └── skill-stack.yaml
+├── lambda
+│   ├── forms
+│   │   └── index.js
+│   ├── index.js
+│   └── package.json
+└── skill-package
+    ├── assets
+    │   ├── en-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">US_largeIcon</span>.</span></span>png
+    │   └── en-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">US_smallIcon</span>.</span></span>png
+    ├── interactionModels
+    │   └── custom
+    │       └── en-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">US</span>.</span></span>json
+    └── skill.json</code></pre><p>You will then be able to deploy this skill into your AWS account.  By default this will be deployed to the <code>us-east-1</code> region.</p>
+				<ul>
+					<li>Update the <code>.ask-resources.json</code> to specify a different region.</li>
+				</ul>
+				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> ask deploy</span></code></pre>
+				<p>The default invocation is &quot;my survey&quot;. Once your skill is deployed, you can <a href="https://developer.amazon.com/en-US/docs/alexa/devconsole/test-your-skill.html">test your skill</a> in the Alexa developer console.</p>
+				<p>Following is an example conversation.</p>
+				<p><img src="ask-form-template.png" alt="ask-form-template"></p>
+				<h3 id="troubleshooting">Troubleshooting</h3>
+				<ul>
+					<li>If you are getting the following error during <code>ask deploy</code>, then you already have the dynamo db table created with the name my-survey :<pre><code><span class="hljs-literal">[E<span class="hljs-identifier">rror</span>]</span>: The CloudFormation deploy failed for Alexa region <span class="hljs-string">"default"</span>: AlexaPersistentAttributesTable<span class="hljs-literal">[AWS::D<span class="hljs-identifier">ynamoDB</span>::T<span class="hljs-identifier">able</span>]</span>  <span class="hljs-constructor">DELETE_COMPLETE(Resource <span class="hljs-params">deleted</span>. For <span class="hljs-params">detailed</span> <span class="hljs-params">reasoning</span>, <span class="hljs-params">please</span> <span class="hljs-params">check</span> <span class="hljs-params">the</span> <span class="hljs-string">"events"</span> <span class="hljs-params">tab</span> <span class="hljs-params">in</span> <span class="hljs-params">the</span> AWS <span class="hljs-params">console</span> <span class="hljs-params">for</span> CloudFormation <span class="hljs-params">stackId</span> &lt;STACK-ID&gt;)</span></code></pre>To resolve this issue you can fo to my-survey/infrastructure/cfn-deployer/skill-stack.yaml and change the name of the <code>PersistentAttributeTableName</code> default value from my-survey.</li>
+					<li>If you are getting the following CLI error during deployment, it might be due to the ask profile settings ;<pre><code>[Error]: CliError: Skill <span class="hljs-keyword">package</span> <span class="hljs-title">src </span><span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> found <span class="hljs-keyword">in</span> ask-resources.json.</code></pre>Go to my-survey/ask-resources.json and check the profile to see if the profile used for deployment is present in this. If not add the profile use for deployment to this file.</li>
+				</ul>
+				<h3 id="adding-to-an-existing-skill-">Adding to an existing skill.</h3>
+				<p>If you already have an existing skill, you can extend it with the following three steps.</p>
+				<ol>
+					<li>Install library</li>
+				</ol>
+				<p>Install the package as a dev dependency with: </p>
+				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> npm install ask-form-sdk</span></code></pre>
+				<ol start="2">
+					<li>Update lambda</li>
+				</ol>
+				<p>Add request handlers for <code>DecimalIntentHandler</code> and <code>FormListHandler</code>.  </p>
+				<p>The <code>FormListHandler</code> class also has methods:</p>
+				<ul>
+					<li><code>handlerNext</code> - Move to next item in the form</li>
+					<li><code>handlePrevious</code> - Move to previous item in the form</li>
+					<li><code>handleUserEvent</code> - Handle APL touch event</li>
+					<li><code>handleFormReview</code> - Display review screen</li>
+				</ul>
+				<p>These can be called from other intents eg <code>AMAZON.NextIntent</code> as shown below.</p>
+				<pre><code class="language-javascript"><span class="hljs-comment">// Import the decimal and form list handler</span>
+<span class="hljs-keyword">const</span> { DecimalIntentHandler, FormListHandler } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ask-form-sdk'</span>);
+
+<span class="hljs-comment">// Import your form definitions</span>
+<span class="hljs-keyword">const</span> { forms } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./forms'</span>);
+
+<span class="hljs-comment">// Add an handler to optionally load user from session or API</span>
+<span class="hljs-keyword">const</span> ApiUserHandler = {
+    <span class="hljs-keyword">async</span> getUser(handlerInput) {
+        <span class="hljs-keyword">const</span> deviceId = handlerInput.requestEnvelope.context.System.device.deviceId;
+        <span class="hljs-keyword">if</span> (handlerInput.serviceClientFactory) {
+            <span class="hljs-keyword">const</span> upsServiceClient = handlerInput.serviceClientFactory.getUpsServiceClient();
+            <span class="hljs-keyword">return</span> {
+                <span class="hljs-attr">username</span>: <span class="hljs-keyword">await</span> upsServiceClient.getProfileName(),
+                <span class="hljs-attr">timeZone</span>: <span class="hljs-keyword">await</span> upsServiceClient.getSystemTimeZone(deviceId),
+            };
+        }
+    },
+    canHandle() {
+        <span class="hljs-comment">// Optionally add logical to check if there is a valid user for form</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+};
+
+<span class="hljs-comment">// Create the forms handler passing the api user handler</span>
+<span class="hljs-keyword">const</span> formsHandler = <span class="hljs-keyword">new</span> FormListHandler(forms, ApiUserHandler);
+
+<span class="hljs-comment">// Welcome intent</span>
+<span class="hljs-keyword">const</span> LaunchRequestHandler = {
+    canHandle(handlerInput) {
+        <span class="hljs-keyword">return</span> handlerInput.requestEnvelope.request.type === <span class="hljs-string">'LaunchRequest'</span>;
+    },
+    handle(handlerInput) {
+        <span class="hljs-keyword">const</span> speakOutput = <span class="hljs-string">'Welcome to sample form, to get started say "start form".'</span>;
+        <span class="hljs-keyword">return</span> handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
+<span class="hljs-comment">// Next handler calls into forms handler</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NextHandler</span> </span>{
+    <span class="hljs-keyword">constructor</span>(formsHandler) {
+        <span class="hljs-keyword">this</span>.formsHandler = formsHandler;
+    }
+    canHandle(handlerInput) {
+        <span class="hljs-keyword">return</span> handlerInput.requestEnvelope.request.type === <span class="hljs-string">'IntentRequest'</span>
+            &amp;&amp; handlerInput.requestEnvelope.request.intent.name === <span class="hljs-string">'AMAZON.NextIntent'</span>
+            &amp;&amp; <span class="hljs-keyword">this</span>.formsHandler.isCurrent(handlerInput);
+    }
+    handle(handlerInput) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.formsHandler.handleNext(handlerInput)
+    }
+};
+
+<span class="hljs-comment">// Add request handlers for (default intent handlers omitted for clarify)</span>
+<span class="hljs-keyword">const</span> requestHandlers = Alexa.SkillBuilders.custom()
+    .addRequestHandlers(
+        <span class="hljs-comment">// LaunchRequestHandler,</span>
+        <span class="hljs-keyword">new</span> DecimalIntentHandler(formsHandler),
+        formsHandler,
+        <span class="hljs-keyword">new</span> NextHandler(formsHandler),
+        SaveFormIntentHandler, <span class="hljs-comment">// Delete to SaveFormIntentHandler</span>
+        ErrorHandler,
+    );
+
+<span class="hljs-comment">// Optionally add other API or persistence handlers, then return lambda</span>
+exports.handler = requestHandlers.lambda();</code></pre>
+				<ol start="3">
+					<li>Add forms</li>
+				</ol>
+				<p>When creating the <code>FormListHandler</code> class you pass a list of forms, these include properties and optional validation as illustrated with this simple two slot form below.</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { WholeNumberValidation } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ask-form-sdk'</span>);
+
+<span class="hljs-keyword">const</span> temperature = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'TemperatureIntent'</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'Temperature Form'</span>,
+    <span class="hljs-attr">prompt</span>: <span class="hljs-function">(<span class="hljs-params">slotNumber</span>) =&gt;</span> slotNumber === <span class="hljs-number">0</span> ? <span class="hljs-string">'Welcome to the form. '</span> : <span class="hljs-string">''</span>,
+    <span class="hljs-attr">slots</span>: [
+        {
+            <span class="hljs-attr">index</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">name</span>: <span class="hljs-string">'slot_three'</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">'AMAZON.NUMBER'</span>,
+            <span class="hljs-attr">prompt</span>: <span class="hljs-string">'What is the temperature (with units)?'</span>,
+            <span class="hljs-attr">reprompt</span>: <span class="hljs-string">'What temperature?'</span>,
+            <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">validation</span>: [
+                <span class="hljs-keyword">new</span> WholeNumberValidation(<span class="hljs-string">'Please specify temperature as a whole number.'</span>),
+            ],
+        },
+        {
+            <span class="hljs-attr">index</span>: <span class="hljs-number">2</span>,
+            <span class="hljs-attr">name</span>: <span class="hljs-string">'slot_three_units'</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">'DECIMAL_UNITS'</span>, <span class="hljs-comment">// Can we just use the same general UNITS type?</span>
+            <span class="hljs-attr">prompt</span>: <span class="hljs-string">'For what units?'</span>,
+            <span class="hljs-attr">reprompt</span>: <span class="hljs-string">'Is that in "Celsius" or "Fahrenheit"?'</span>,
+            <span class="hljs-attr">required</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">options</span>: {
+                <span class="hljs-string">'C'</span>: [
+                    <span class="hljs-string">'Celcius'</span>,
+                    <span class="hljs-string">'degree celcius'</span>,
+                    <span class="hljs-string">'degrees celcius'</span>,
+                    <span class="hljs-string">'centigrade'</span>,
+                ],
+                <span class="hljs-string">'F'</span>: [
+                    <span class="hljs-string">'Fahrenheit'</span>,
+                    <span class="hljs-string">'degree fahrenheit'</span>,
+                    <span class="hljs-string">'degrees fahrenheit'</span>,
+                ],
+            },
+            <span class="hljs-attr">conditional</span>: [{
+                <span class="hljs-attr">name</span>: <span class="hljs-string">'slot_three'</span>,
+                <span class="hljs-attr">empty</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Conditional if the slot_three is not empty</span>
+            }],
+        },
+    ],
+    <span class="hljs-attr">confirmation</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`Okay, would you like to save the temperature?`</span>;
+    },
+    <span class="hljs-attr">delegate</span>: <span class="hljs-string">'SaveFormIntent'</span>,
+    <span class="hljs-attr">samples</span>: [
+        <span class="hljs-string">'record temperature of {slot_three} {slot_three_units}'</span>,
+        <span class="hljs-string">'record temperature of {slot_three}'</span>,
+        <span class="hljs-string">'record temperature'</span>,
+    ],
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> forms = [temperature];</code></pre>
+				<h3 id="customising-the-form-and-slots-definition">Customising the Form and Slots definition</h3>
+				<p>The form has a number of slots which you can configure.</p>
+				<ul>
+					<li><code>name</code>: unique name for the form.</li>
+					<li><code>title</code>: unique title displayed on the card.</li>
+					<li><code>slots</code>: the list of properties for each slot (see below)</li>
+					<li><code>prompt(slotNumber)</code>: a function to return the prompt to display when beginning the form.</li>
+					<li><code>confirmation(slots, slotValues)</code>: a function to return the prompt when completing the form.</li>
+					<li><code>delegate</code>: the intent name to delegate to after confirmation eg &quot;StartFormIntent&quot;.</li>
+					<li><code>samples</code>: the list of samples heard to start form eg &quot;start form&quot;.</li>
+					<li><code>reviewPrompt(aplSupported, slotValues)</code>: optional function to return a prompt after the review page is displayed.</li>
+					<li><code>aplProperties</code>:<ul>
+							<li><code>previousDisplayText</code>: Optional text to prefix for previous item in list eg &quot;Previous&quot; </li>
+							<li><code>nextDisplayText</code>: Optional text to prefix for next item in list eg &quot;Next&quot;</li>
+							<li><code>endOfFormText</code>: Optional text to display for the end of the list eg &quot;End of form&quot;.</li>
+						</ul>
+					</li>
+				</ul>
+				<p>Each slot has a series of properties.</p>
+				<ul>
+					<li><code>name</code>: unique name for the slot.</li>
+					<li><code>index</code>: optional number for the slot.</li>
+					<li><code>type</code>: the Alexa <a href="https://developer.amazon.com/en-US/docs/alexa/custom-skills/slot-type-reference.html">Slot Type</a> </li>
+					<li><code>options</code>: for custom slots, you can provide a list of options.</li>
+					<li><code>prompt</code>: The prompt to ask user.</li>
+					<li><code>reprompt</code>: The re-prompt message for user.</li>
+					<li><code>required</code>: Specify boolean (true/false) if the field is required.</li>
+					<li><code>conditional</code>: Optional list of conditional settings for this slot<ul>
+							<li><code>name</code>: slot name to match condition</li>
+							<li><code>empty</code>: Optional boolean (true/false) to make on an empty or non-empty field.</li>
+							<li><code>value</code>: Optional value to match for slot.</li>
+						</ul>
+					</li>
+				</ul>
+				<p>You can customize the form and add new fields and delete/modify existing fields as required by the skill. This can be done by editing the index.js file under lambda/forms folder.</p>
+				<h3 id="code-generating-the-model">Code Generating the model</h3>
+				<p>Once you have made changes or additions to the form definition, you can code generate the model file(en-US). In order to do this, you need to install the ask-form-sdk. The following will install the SDKs globally for code generation, you can also access run locally via <code>node_modules/.bin/ask-form-codegen</code> command.</p>
+				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> my-survey</span>
+<span class="hljs-meta">$</span><span class="bash"> npm install -g ask-form-sdk</span></code></pre>
+				<p>The code generation tool can take in the following options:</p>
+				<ul>
+					<li>-f : the path to forms</li>
+					<li>-s : the path to the source model json</li>
+					<li>-t : the path to the target model json</li>
+					<li>-i : invocation name for skill. Provide this argument when the model is created from scratch.</li>
+				</ul>
+				<p>There are 2 options for code generation.</p>
+				<ul>
+					<li>Have the new form changes applied on top of the existing model file. This can be done by providing the existing model file as the source file:</li>
+				</ul>
+				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> ask-form-codegen -f lambda/forms/ -t skill-package/interactionModels/custom/en-US.json -s skill-package/interactionModels/custom/en-US.json</span></code></pre>
+				<ul>
+					<li>Have the model code generated from scratch. To generate the model file form scratch, provide the invocation name and do not provide any source model files :</li>
+				</ul>
+				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> ask-form-codegen -f lambda/forms/ -t skill-package/interactionModels/custom/en-US.json -i <span class="hljs-string">'my survey'</span></span></code></pre>
+				<p>This will create a model file with the fields in the form along with few other intents required by the skill.</p>
+				<h2 id="tests">Tests</h2>
+				<p>The <code>examples</code> folder defines a series of typescript test specifications using the <a href="https://github.com/taimos/ask-sdk-test">ask-sdk-test</a> framework that show cases some of the various features mentioned above.</p>
+				<h2 id="authors">Authors</h2>
+				<ul>
+					<li><a href="http://github.com/brightsparc">Julian Bright</a></li>
+					<li><a href="http://github.com/christy-maria">Christy maria Mathew</a></li>
+				</ul>
+				<h2 id="security">Security</h2>
+				<p>See <a href="CONTRIBUTING.md#security-issue-notifications">CONTRIBUTING</a> for more information.</p>
+				<h2 id="license">License</h2>
+				<p>This library is licensed under the MIT-0 License. See the LICENSE.txt file.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/datedayvalidation.html" class="tsd-kind-icon">Date<wbr>Day<wbr>Validation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/decimalintenthandler.html" class="tsd-kind-icon">Decimal<wbr>Intent<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/formintenthandler.html" class="tsd-kind-icon">Form<wbr>Intent<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/formlisthandler.html" class="tsd-kind-icon">Form<wbr>List<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/modelcodegen.html" class="tsd-kind-icon">Model<wbr>Codegen</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/numberrangevalidation.html" class="tsd-kind-icon">Number<wbr>Range<wbr>Validation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/wholenumbervalidation.html" class="tsd-kind-icon">Whole<wbr>Number<wbr>Validation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/aplprops.html" class="tsd-kind-icon">APLProps</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/alexalocalemodel.html" class="tsd-kind-icon">Alexa<wbr>Locale<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/apltextlisttemplate.html" class="tsd-kind-icon">Apl<wbr>Text<wbr>List<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/decimalprops.html" class="tsd-kind-icon">Decimal<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/dialog.html" class="tsd-kind-icon">Dialog</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/dialogintent.html" class="tsd-kind-icon">Dialog<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/dialogslot.html" class="tsd-kind-icon">Dialog<wbr>Slot</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/formprops.html" class="tsd-kind-icon">Form<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/formrequesthandler.html" class="tsd-kind-icon">Form<wbr>Request<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/formslotprops.html" class="tsd-kind-icon">Form<wbr>Slot<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/import.html" class="tsd-kind-icon">Import</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/interactionmodel.html" class="tsd-kind-icon">Interaction<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/item.html" class="tsd-kind-icon">Item</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/languagemodel.html" class="tsd-kind-icon">Language<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/languagemodelintent.html" class="tsd-kind-icon">Language<wbr>Model<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/languagemodeltype.html" class="tsd-kind-icon">Language<wbr>Model<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/listitem.html" class="tsd-kind-icon">List<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/maintemplate.html" class="tsd-kind-icon">Main<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/primaryaction.html" class="tsd-kind-icon">Primary<wbr>Action</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/prompt.html" class="tsd-kind-icon">Prompt</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/sessionprops.html" class="tsd-kind-icon">Session<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/slot.html" class="tsd-kind-icon">Slot</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/slotconditionprops.html" class="tsd-kind-icon">Slot<wbr>Condition<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/slotvalidationprops.html" class="tsd-kind-icon">Slot<wbr>Validation<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/typevalue.html" class="tsd-kind-icon">Type<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/typevaluename.html" class="tsd-kind-icon">Type<wbr>Value<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/userhandler.html" class="tsd-kind-icon">User<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/userprops.html" class="tsd-kind-icon">User<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/variation.html" class="tsd-kind-icon">Variation</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#intentslots" class="tsd-kind-icon">Intent<wbr>Slots</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#slotvalues" class="tsd-kind-icon">Slot<wbr>Values</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#command" class="tsd-kind-icon">command</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#intents" class="tsd-kind-icon">intents</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#types" class="tsd-kind-icon">types</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#getlocaldate" class="tsd-kind-icon">get<wbr>Local<wbr>Date</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#textlistwithtouch" class="tsd-kind-icon">Text<wbr>List<wbr>With<wbr>Touch</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#basemodel" class="tsd-kind-icon">base<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#cancelintent" class="tsd-kind-icon">cancel<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#clearformintent" class="tsd-kind-icon">clear<wbr>Form<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#decimaldialogintent" class="tsd-kind-icon">decimal<wbr>Dialog<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#decimalintent" class="tsd-kind-icon">decimal<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#decimalsigntype" class="tsd-kind-icon">decimal<wbr>Sign<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#decimalunittype" class="tsd-kind-icon">decimal<wbr>Unit<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#dialog" class="tsd-kind-icon">dialog</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#fallbackintent" class="tsd-kind-icon">fallback<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#helpintent" class="tsd-kind-icon">help<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#interactionmodel" class="tsd-kind-icon">interaction<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#languagemodel" class="tsd-kind-icon">language<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#negativesigntype" class="tsd-kind-icon">negative<wbr>Sign<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#nextintent" class="tsd-kind-icon">next<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#percenttype" class="tsd-kind-icon">percent<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#postiviesigntype" class="tsd-kind-icon">postivie<wbr>Sign<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#previousintent" class="tsd-kind-icon">previous<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#reviewformintent" class="tsd-kind-icon">review<wbr>Form<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#stopintent" class="tsd-kind-icon">stop<wbr>Intent</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#textlisttemplates" class="tsd-kind-icon">text<wbr>List<wbr>Templates</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
