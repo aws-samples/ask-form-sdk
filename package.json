@@ -1,7 +1,7 @@
 {
     "name": "ask-form-sdk",
     "displayName": "Alexa Form SDK",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "description": "This Alexa Form SDK provides support for creating skills that include survey form collection.",
     "keywords": [
         "alexa",
@@ -42,9 +42,9 @@
         "mocha": "^7.2.0"
     },
     "bugs": {
-        "url": "https://github.com/brightsparc/ask-form-sdk/issues"
+        "url": "https://github.com/aws-samples/ask-form-sdk/issues"
     },
-    "repository": "brightsparc/ask-form-sdk",
+    "repository": "aws-samples/ask-form-sdk",
     "devDependencies": {
         "@types/expect": "^24.3.0",
         "@types/mocha": "^7.0.2",
