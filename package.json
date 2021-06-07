@@ -20,7 +20,7 @@
         "compile": "tsc -p tsconfig.json",
         "lint": "tslint -p tsconfig.json -c tslint.json",
         "coverage": "nyc -x tst -e .ts --temp-directory 'coverage/nyc-output' -r html -r text-summary -r cobertura _mocha --require ts-node/register 'examples/*.spec.ts' --reporter nyan",
-        "doc": "typedoc --excludeExternals --mode file --out doc lib/",
+        "doc": "typedoc --excludeExternals --out doc lib/",
         "build": "npm-run-all clean compile lint test doc",
         "test": "tsc && ts-mocha -p tsconfig.json examples/*.spec.ts",
         "preversion": "npm-run-all clean lint test",
@@ -57,7 +57,7 @@
         "ts-mocha": "^7.0.0",
         "ts-node": "^8.1.0",
         "tslint": "^5.18.0",
-        "typedoc": "^0.14.2",
+        "typedoc": "^0.20.36",
         "typescript": "^3.9.3"
     }
 }

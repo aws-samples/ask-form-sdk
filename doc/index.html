@@ -4,16 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>ask-form-sdk</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for ask-form-sdk">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -38,8 +39,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -49,12 +48,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1> ask-form-sdk</h1>
+			<h1>ask-form-sdk</h1>
 		</div>
 	</div>
 </header>
@@ -62,10 +56,16 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="alexa-form-sdk">Alexa Form SDK</h1>
-				<h2 id="introduction">Introduction</h2>
+				<a href="#alexa-form-sdk" id="alexa-form-sdk" style="color: inherit; text-decoration: none;">
+					<h1>Alexa Form SDK</h1>
+				</a>
+				<a href="#introduction" id="introduction" style="color: inherit; text-decoration: none;">
+					<h2>Introduction</h2>
+				</a>
 				<p>This Alexa Form SDK for Node.js provides support for creating skills for dynamic questions and answer forms.</p>
-				<h2 id="features">Features</h2>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
 				<p>In order to support flexible and dynamic forms, this sample includes a number of advanced features.</p>
 				<ol>
 					<li>Conditional slot support (eg if answered &#39;yes&#39; to slot one, then prompt for slot two).</li>
@@ -75,10 +75,16 @@
 					<li>Skipping field collection in a form (eg &quot;skip&quot; to move to next record, or &quot;previous&quot; to go back).</li>
 					<li>Confirmation of form fields before delegating to save action.</li>
 				</ol>
-				<h2 id="getting-started">Getting started</h2>
-				<h3 id="using-the-template">Using the template</h3>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting started</h2>
+				</a>
+				<a href="#using-the-template" id="using-the-template" style="color: inherit; text-decoration: none;">
+					<h3>Using the template</h3>
+				</a>
 				<p>Use the ASK CLI to <a href="https://developer.amazon.com/en-GB/docs/alexa/smapi/ask-cli-intro.html#create-new-skill">Create a new skill</a> with a template-url:</p>
-				<pre><code>ask <span class="hljs-keyword">new</span> --<span class="hljs-keyword">template</span>-url https:<span class="hljs-comment">//github.com/aws-samples/ask-form-template.git</span></code></pre><p>You are prompted to choose a method to host your skill&#39;s backend resources:</p>
+				<pre><code><span style="color: #001080">ask</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> --</span><span style="color: #001080">template</span><span style="color: #000000">-</span><span style="color: #001080">url</span><span style="color: #000000"> https:</span><span style="color: #008000">//github.com/aws-samples/ask-form-template.git</span>
+</code></pre>
+				<p>You are prompted to choose a method to host your skill&#39;s backend resources:</p>
 				<ul>
 					<li><code>Alexa-hosted-skills</code> (Do not choose this)</li>
 					<li><code>AWS with CloudFormation</code> (Choose this to for AWS Lambda with persistence to Amazon DynamoDB)</li>
@@ -86,52 +92,66 @@
 				</ul>
 				<p>You will then be warned you about downloading an unofficial template.</p>
 				<p>Input <strong>Yes</strong> to continue provide a skill name eg. <code>my-survey</code>.</p>
-				<pre><code>? Choose a <span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">to</span> <span class="hljs-title">host</span> <span class="hljs-title">your</span> <span class="hljs-title">skill</span>'<span class="hljs-title">s</span> <span class="hljs-title">backend</span> <span class="hljs-title">resources</span>:</span>  AWS <span class="hljs-keyword">with</span> CloudFormation
-[Warn]: CLI <span class="hljs-keyword">is</span> about <span class="hljs-keyword">to</span> download the skill template <span class="hljs-keyword">from</span> unofficial template https:<span class="hljs-comment">//github.com/aws-samples/ask-form-template.git. Please make sure you understand the source code to best protect yourself from malicious usage.</span>
-? Would you like <span class="hljs-keyword">to</span> <span class="hljs-keyword">continue</span> download the skill template?  Yes
-? Please <span class="hljs-keyword">type</span> <span class="hljs-keyword">in</span> your skill name: my-survey
-? Please <span class="hljs-keyword">type</span> <span class="hljs-keyword">in</span> your folder name <span class="hljs-keyword">for</span> the skill project (alphanumeric):  my-survey</code></pre><p>Change into your project directory, and list the contents.  You will see the template includes a <code>lambda</code> folder with a samples <code>forms</code> folder used to generate skill interaction model, as well as <code>infrastructure</code> to deploy cloud formation if required.</p>
-				<pre><code>$ cd my-survey
-$ tree
-.
-├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LICENSE</span>.</span></span>txt
-├── <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">README</span>.</span></span>md
-├── ask-resources.json
-├── infrastructure
-│   └── cfn-deployer
-│       └── skill-stack.yaml
-├── lambda
-│   ├── forms
-│   │   └── index.js
-│   ├── index.js
-│   └── package.json
-└── skill-package
-    ├── assets
-    │   ├── en-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">US_largeIcon</span>.</span></span>png
-    │   └── en-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">US_smallIcon</span>.</span></span>png
-    ├── interactionModels
-    │   └── custom
-    │       └── en-<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">US</span>.</span></span>json
-    └── skill.json</code></pre><p>You will then be able to deploy this skill into your AWS account.  By default this will be deployed to the <code>us-east-1</code> region.</p>
+				<pre><code><span style="color: #000000">? </span><span style="color: #001080">Choose</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> </span><span style="color: #001080">method</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">host</span><span style="color: #000000"> </span><span style="color: #001080">your</span><span style="color: #000000"> </span><span style="color: #001080">skill</span><span style="color: #A31515">&#039;s backend resources:  AWS with CloudFormatio</span><span style="color: #CD3131">n</span>
+<span style="color: #000000">[</span><span style="color: #001080">Warn</span><span style="color: #000000">]: </span><span style="color: #0070C1">CLI</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">about</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">download</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">skill</span><span style="color: #000000"> </span><span style="color: #001080">template</span><span style="color: #000000"> </span><span style="color: #001080">from</span><span style="color: #000000"> </span><span style="color: #001080">unofficial</span><span style="color: #000000"> </span><span style="color: #001080">template</span><span style="color: #000000"> https:</span><span style="color: #008000">//github.com/aws-samples/ask-form-template.git. Please make sure you understand the source code to best protect yourself from malicious usage.</span>
+<span style="color: #000000">? </span><span style="color: #001080">Would</span><span style="color: #000000"> </span><span style="color: #001080">you</span><span style="color: #000000"> </span><span style="color: #001080">like</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">continue</span><span style="color: #000000"> </span><span style="color: #001080">download</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">skill</span><span style="color: #000000"> </span><span style="color: #001080">template</span><span style="color: #000000">?  </span><span style="color: #001080">Yes</span>
+<span style="color: #000000">? </span><span style="color: #001080">Please</span><span style="color: #000000"> </span><span style="color: #001080">type</span><span style="color: #000000"> </span><span style="color: #0000FF">in</span><span style="color: #000000"> </span><span style="color: #001080">your</span><span style="color: #000000"> </span><span style="color: #001080">skill</span><span style="color: #000000"> </span><span style="color: #001080">name</span><span style="color: #000000">: </span><span style="color: #001080">my</span><span style="color: #000000">-</span><span style="color: #001080">survey</span>
+<span style="color: #000000">? </span><span style="color: #001080">Please</span><span style="color: #000000"> </span><span style="color: #001080">type</span><span style="color: #000000"> </span><span style="color: #0000FF">in</span><span style="color: #000000"> </span><span style="color: #001080">your</span><span style="color: #000000"> </span><span style="color: #001080">folder</span><span style="color: #000000"> </span><span style="color: #001080">name</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">skill</span><span style="color: #000000"> </span><span style="color: #795E26">project</span><span style="color: #000000"> (</span><span style="color: #001080">alphanumeric</span><span style="color: #000000">):  </span><span style="color: #001080">my</span><span style="color: #000000">-</span><span style="color: #001080">survey</span>
+</code></pre>
+				<p>Change into your project directory, and list the contents.  You will see the template includes a <code>lambda</code> folder with a samples <code>forms</code> folder used to generate skill interaction model, as well as <code>infrastructure</code> to deploy cloud formation if required.</p>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">cd</span><span style="color: #000000"> </span><span style="color: #001080">my</span><span style="color: #000000">-</span><span style="color: #001080">survey</span>
+<span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">tree</span>
+<span style="color: #000000">.</span>
+<span style="color: #000000">├── </span><span style="color: #0070C1">LICENSE</span><span style="color: #000000">.</span><span style="color: #001080">txt</span>
+<span style="color: #000000">├── </span><span style="color: #0070C1">README</span><span style="color: #000000">.</span><span style="color: #001080">md</span>
+<span style="color: #000000">├── </span><span style="color: #001080">ask</span><span style="color: #000000">-</span><span style="color: #001080">resources</span><span style="color: #000000">.</span><span style="color: #001080">json</span>
+<span style="color: #000000">├── </span><span style="color: #001080">infrastructure</span>
+<span style="color: #000000">│   └── </span><span style="color: #001080">cfn</span><span style="color: #000000">-</span><span style="color: #001080">deployer</span>
+<span style="color: #000000">│       └── </span><span style="color: #001080">skill</span><span style="color: #000000">-</span><span style="color: #001080">stack</span><span style="color: #000000">.</span><span style="color: #001080">yaml</span>
+<span style="color: #000000">├── </span><span style="color: #001080">lambda</span>
+<span style="color: #000000">│   ├── </span><span style="color: #001080">forms</span>
+<span style="color: #000000">│   │   └── </span><span style="color: #001080">index</span><span style="color: #000000">.</span><span style="color: #001080">js</span>
+<span style="color: #000000">│   ├── </span><span style="color: #001080">index</span><span style="color: #000000">.</span><span style="color: #001080">js</span>
+<span style="color: #000000">│   └── </span><span style="color: #001080">package</span><span style="color: #000000">.</span><span style="color: #001080">json</span>
+<span style="color: #000000">└── </span><span style="color: #001080">skill</span><span style="color: #000000">-</span><span style="color: #AF00DB">package</span>
+<span style="color: #000000">    ├── </span><span style="color: #001080">assets</span>
+<span style="color: #000000">    │   ├── </span><span style="color: #001080">en</span><span style="color: #000000">-</span><span style="color: #001080">US_largeIcon</span><span style="color: #000000">.</span><span style="color: #001080">png</span>
+<span style="color: #000000">    │   └── </span><span style="color: #001080">en</span><span style="color: #000000">-</span><span style="color: #001080">US_smallIcon</span><span style="color: #000000">.</span><span style="color: #001080">png</span>
+<span style="color: #000000">    ├── </span><span style="color: #001080">interactionModels</span>
+<span style="color: #000000">    │   └── </span><span style="color: #001080">custom</span>
+<span style="color: #000000">    │       └── </span><span style="color: #001080">en</span><span style="color: #000000">-</span><span style="color: #0070C1">US</span><span style="color: #000000">.</span><span style="color: #001080">json</span>
+<span style="color: #000000">    └── </span><span style="color: #001080">skill</span><span style="color: #000000">.</span><span style="color: #001080">json</span>
+</code></pre>
+				<p>You will then be able to deploy this skill into your AWS account.  By default this will be deployed to the <code>us-east-1</code> region.</p>
 				<ul>
 					<li>Update the <code>.ask-resources.json</code> to specify a different region.</li>
 				</ul>
-				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> ask deploy</span></code></pre>
+				<pre><code class="language-shell"><span style="color: #000000">$ ask deploy</span>
+</code></pre>
 				<p>The default invocation is &quot;my survey&quot;. Once your skill is deployed, you can <a href="https://developer.amazon.com/en-US/docs/alexa/devconsole/test-your-skill.html">test your skill</a> in the Alexa developer console.</p>
 				<p>Following is an example conversation.</p>
 				<p><img src="ask-form-template.png" alt="ask-form-template"></p>
-				<h3 id="troubleshooting">Troubleshooting</h3>
+				<a href="#troubleshooting" id="troubleshooting" style="color: inherit; text-decoration: none;">
+					<h3>Troubleshooting</h3>
+				</a>
 				<ul>
-					<li>If you are getting the following error during <code>ask deploy</code>, then you already have the dynamo db table created with the name my-survey :<pre><code><span class="hljs-literal">[E<span class="hljs-identifier">rror</span>]</span>: The CloudFormation deploy failed for Alexa region <span class="hljs-string">"default"</span>: AlexaPersistentAttributesTable<span class="hljs-literal">[AWS::D<span class="hljs-identifier">ynamoDB</span>::T<span class="hljs-identifier">able</span>]</span>  <span class="hljs-constructor">DELETE_COMPLETE(Resource <span class="hljs-params">deleted</span>. For <span class="hljs-params">detailed</span> <span class="hljs-params">reasoning</span>, <span class="hljs-params">please</span> <span class="hljs-params">check</span> <span class="hljs-params">the</span> <span class="hljs-string">"events"</span> <span class="hljs-params">tab</span> <span class="hljs-params">in</span> <span class="hljs-params">the</span> AWS <span class="hljs-params">console</span> <span class="hljs-params">for</span> CloudFormation <span class="hljs-params">stackId</span> &lt;STACK-ID&gt;)</span></code></pre>To resolve this issue you can fo to my-survey/infrastructure/cfn-deployer/skill-stack.yaml and change the name of the <code>PersistentAttributeTableName</code> default value from my-survey.</li>
-					<li>If you are getting the following CLI error during deployment, it might be due to the ask profile settings ;<pre><code>[Error]: CliError: Skill <span class="hljs-keyword">package</span> <span class="hljs-title">src </span><span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> found <span class="hljs-keyword">in</span> ask-resources.json.</code></pre>Go to my-survey/ask-resources.json and check the profile to see if the profile used for deployment is present in this. If not add the profile use for deployment to this file.</li>
+					<li>If you are getting the following error during <code>ask deploy</code>, then you already have the dynamo db table created with the name my-survey :<pre><code><span style="color: #000000">[</span><span style="color: #267F99">Error</span><span style="color: #000000">]: </span><span style="color: #001080">The</span><span style="color: #000000"> </span><span style="color: #001080">CloudFormation</span><span style="color: #000000"> </span><span style="color: #001080">deploy</span><span style="color: #000000"> </span><span style="color: #001080">failed</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">Alexa</span><span style="color: #000000"> </span><span style="color: #001080">region</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;default&quot;</span><span style="color: #000000">: </span><span style="color: #001080">AlexaPersistentAttributesTable</span><span style="color: #000000">[</span><span style="color: #0070C1">AWS</span><span style="color: #000000">::</span><span style="color: #001080">DynamoDB</span><span style="color: #000000">::</span><span style="color: #001080">Table</span><span style="color: #000000">]  </span><span style="color: #795E26">DELETE_COMPLETE</span><span style="color: #000000">(</span><span style="color: #001080">Resource</span><span style="color: #000000"> </span><span style="color: #001080">deleted</span><span style="color: #000000">. </span><span style="color: #001080">For</span><span style="color: #000000"> </span><span style="color: #001080">detailed</span><span style="color: #000000"> </span><span style="color: #001080">reasoning</span><span style="color: #000000">, </span><span style="color: #001080">please</span><span style="color: #000000"> </span><span style="color: #001080">check</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;events&quot;</span><span style="color: #000000"> </span><span style="color: #001080">tab</span><span style="color: #000000"> </span><span style="color: #0000FF">in</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #0070C1">AWS</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">CloudFormation</span><span style="color: #000000"> </span><span style="color: #001080">stackId</span><span style="color: #000000"> &lt;</span><span style="color: #0070C1">STACK</span><span style="color: #000000">-</span><span style="color: #0070C1">ID</span><span style="color: #000000">&gt;)</span>
+</code></pre>
+					To resolve this issue you can fo to my-survey/infrastructure/cfn-deployer/skill-stack.yaml and change the name of the <code>PersistentAttributeTableName</code> default value from my-survey.</li>
+					<li>If you are getting the following CLI error during deployment, it might be due to the ask profile settings ;<pre><code><span style="color: #000000">[</span><span style="color: #267F99">Error</span><span style="color: #000000">]: CliError: </span><span style="color: #001080">Skill</span><span style="color: #000000"> </span><span style="color: #AF00DB">package</span><span style="color: #000000"> </span><span style="color: #001080">src</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">not</span><span style="color: #000000"> </span><span style="color: #001080">found</span><span style="color: #000000"> </span><span style="color: #0000FF">in</span><span style="color: #000000"> </span><span style="color: #001080">ask</span><span style="color: #000000">-</span><span style="color: #001080">resources</span><span style="color: #000000">.</span><span style="color: #001080">json</span><span style="color: #000000">.</span>
+</code></pre>
+					Go to my-survey/ask-resources.json and check the profile to see if the profile used for deployment is present in this. If not add the profile use for deployment to this file.</li>
 				</ul>
-				<h3 id="adding-to-an-existing-skill-">Adding to an existing skill.</h3>
+				<a href="#adding-to-an-existing-skill" id="adding-to-an-existing-skill" style="color: inherit; text-decoration: none;">
+					<h3>Adding to an existing skill.</h3>
+				</a>
 				<p>If you already have an existing skill, you can extend it with the following three steps.</p>
 				<ol>
 					<li>Install library</li>
 				</ol>
 				<p>Install the package as a dev dependency with: </p>
-				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> npm install ask-form-sdk</span></code></pre>
+				<pre><code class="language-shell"><span style="color: #000000">$ npm install ask-form-sdk</span>
+</code></pre>
 				<ol start="2">
 					<li>Update lambda</li>
 				</ol>
@@ -144,136 +164,140 @@ $ tree
 					<li><code>handleFormReview</code> - Display review screen</li>
 				</ul>
 				<p>These can be called from other intents eg <code>AMAZON.NextIntent</code> as shown below.</p>
-				<pre><code class="language-javascript"><span class="hljs-comment">// Import the decimal and form list handler</span>
-<span class="hljs-keyword">const</span> { DecimalIntentHandler, FormListHandler } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ask-form-sdk'</span>);
+				<pre><code class="language-javascript"><span style="color: #008000">// Import the decimal and form list handler</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">DecimalIntentHandler</span><span style="color: #000000">, </span><span style="color: #0070C1">FormListHandler</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ask-form-sdk&#039;</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Import your form definitions</span>
-<span class="hljs-keyword">const</span> { forms } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./forms'</span>);
+<span style="color: #008000">// Import your form definitions</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">forms</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;./forms&#039;</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Add an handler to optionally load user from session or API</span>
-<span class="hljs-keyword">const</span> ApiUserHandler = {
-    <span class="hljs-keyword">async</span> getUser(handlerInput) {
-        <span class="hljs-keyword">const</span> deviceId = handlerInput.requestEnvelope.context.System.device.deviceId;
-        <span class="hljs-keyword">if</span> (handlerInput.serviceClientFactory) {
-            <span class="hljs-keyword">const</span> upsServiceClient = handlerInput.serviceClientFactory.getUpsServiceClient();
-            <span class="hljs-keyword">return</span> {
-                <span class="hljs-attr">username</span>: <span class="hljs-keyword">await</span> upsServiceClient.getProfileName(),
-                <span class="hljs-attr">timeZone</span>: <span class="hljs-keyword">await</span> upsServiceClient.getSystemTimeZone(deviceId),
-            };
-        }
-    },
-    canHandle() {
-        <span class="hljs-comment">// Optionally add logical to check if there is a valid user for form</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-    }
-};
+<span style="color: #008000">// Add an handler to optionally load user from session or API</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ApiUserHandler</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #795E26">getUser</span><span style="color: #000000">(</span><span style="color: #001080">handlerInput</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">deviceId</span><span style="color: #000000"> = </span><span style="color: #001080">handlerInput</span><span style="color: #000000">.</span><span style="color: #001080">requestEnvelope</span><span style="color: #000000">.</span><span style="color: #001080">context</span><span style="color: #000000">.</span><span style="color: #001080">System</span><span style="color: #000000">.</span><span style="color: #001080">device</span><span style="color: #000000">.</span><span style="color: #001080">deviceId</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">handlerInput</span><span style="color: #000000">.</span><span style="color: #001080">serviceClientFactory</span><span style="color: #000000">) {</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">upsServiceClient</span><span style="color: #000000"> = </span><span style="color: #001080">handlerInput</span><span style="color: #000000">.</span><span style="color: #001080">serviceClientFactory</span><span style="color: #000000">.</span><span style="color: #795E26">getUpsServiceClient</span><span style="color: #000000">();</span>
+<span style="color: #000000">            </span><span style="color: #AF00DB">return</span><span style="color: #000000"> {</span>
+<span style="color: #000000">                </span><span style="color: #001080">username:</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">upsServiceClient</span><span style="color: #000000">.</span><span style="color: #795E26">getProfileName</span><span style="color: #000000">(),</span>
+<span style="color: #000000">                </span><span style="color: #001080">timeZone:</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">upsServiceClient</span><span style="color: #000000">.</span><span style="color: #795E26">getSystemTimeZone</span><span style="color: #000000">(</span><span style="color: #001080">deviceId</span><span style="color: #000000">),</span>
+<span style="color: #000000">            };</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #795E26">canHandle</span><span style="color: #000000">() {</span>
+<span style="color: #000000">        </span><span style="color: #008000">// Optionally add logical to check if there is a valid user for form</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">;</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">};</span>
 
-<span class="hljs-comment">// Create the forms handler passing the api user handler</span>
-<span class="hljs-keyword">const</span> formsHandler = <span class="hljs-keyword">new</span> FormListHandler(forms, ApiUserHandler);
+<span style="color: #008000">// Create the forms handler passing the api user handler</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">formsHandler</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">FormListHandler</span><span style="color: #000000">(</span><span style="color: #001080">forms</span><span style="color: #000000">, </span><span style="color: #001080">ApiUserHandler</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Welcome intent</span>
-<span class="hljs-keyword">const</span> LaunchRequestHandler = {
-    canHandle(handlerInput) {
-        <span class="hljs-keyword">return</span> handlerInput.requestEnvelope.request.type === <span class="hljs-string">'LaunchRequest'</span>;
-    },
-    handle(handlerInput) {
-        <span class="hljs-keyword">const</span> speakOutput = <span class="hljs-string">'Welcome to sample form, to get started say "start form".'</span>;
-        <span class="hljs-keyword">return</span> handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
-            .getResponse();
-    }
-};
+<span style="color: #008000">// Welcome intent</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">LaunchRequestHandler</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">canHandle</span><span style="color: #000000">(</span><span style="color: #001080">handlerInput</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">handlerInput</span><span style="color: #000000">.</span><span style="color: #001080">requestEnvelope</span><span style="color: #000000">.</span><span style="color: #001080">request</span><span style="color: #000000">.</span><span style="color: #001080">type</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;LaunchRequest&#039;</span><span style="color: #000000">;</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #795E26">handle</span><span style="color: #000000">(</span><span style="color: #001080">handlerInput</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">speakOutput</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;Welcome to sample form, to get started say &quot;start form&quot;.&#039;</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">handlerInput</span><span style="color: #000000">.</span><span style="color: #001080">responseBuilder</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">speak</span><span style="color: #000000">(</span><span style="color: #001080">speakOutput</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">reprompt</span><span style="color: #000000">(</span><span style="color: #001080">speakOutput</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">getResponse</span><span style="color: #000000">();</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">};</span>
 
-<span class="hljs-comment">// Next handler calls into forms handler</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NextHandler</span> </span>{
-    <span class="hljs-keyword">constructor</span>(formsHandler) {
-        <span class="hljs-keyword">this</span>.formsHandler = formsHandler;
-    }
-    canHandle(handlerInput) {
-        <span class="hljs-keyword">return</span> handlerInput.requestEnvelope.request.type === <span class="hljs-string">'IntentRequest'</span>
-            &amp;&amp; handlerInput.requestEnvelope.request.intent.name === <span class="hljs-string">'AMAZON.NextIntent'</span>
-            &amp;&amp; <span class="hljs-keyword">this</span>.formsHandler.isCurrent(handlerInput);
-    }
-    handle(handlerInput) {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.formsHandler.handleNext(handlerInput)
-    }
-};
+<span style="color: #008000">// Next handler calls into forms handler</span>
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">NextHandler</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #001080">formsHandler</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">formsHandler</span><span style="color: #000000"> = </span><span style="color: #001080">formsHandler</span><span style="color: #000000">;</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">    </span><span style="color: #795E26">canHandle</span><span style="color: #000000">(</span><span style="color: #001080">handlerInput</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">handlerInput</span><span style="color: #000000">.</span><span style="color: #001080">requestEnvelope</span><span style="color: #000000">.</span><span style="color: #001080">request</span><span style="color: #000000">.</span><span style="color: #001080">type</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;IntentRequest&#039;</span>
+<span style="color: #000000">            &amp;&amp; </span><span style="color: #001080">handlerInput</span><span style="color: #000000">.</span><span style="color: #001080">requestEnvelope</span><span style="color: #000000">.</span><span style="color: #001080">request</span><span style="color: #000000">.</span><span style="color: #001080">intent</span><span style="color: #000000">.</span><span style="color: #001080">name</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;AMAZON.NextIntent&#039;</span>
+<span style="color: #000000">            &amp;&amp; </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">formsHandler</span><span style="color: #000000">.</span><span style="color: #795E26">isCurrent</span><span style="color: #000000">(</span><span style="color: #001080">handlerInput</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">    </span><span style="color: #795E26">handle</span><span style="color: #000000">(</span><span style="color: #001080">handlerInput</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">formsHandler</span><span style="color: #000000">.</span><span style="color: #795E26">handleNext</span><span style="color: #000000">(</span><span style="color: #001080">handlerInput</span><span style="color: #000000">)</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">};</span>
 
-<span class="hljs-comment">// Add request handlers for (default intent handlers omitted for clarify)</span>
-<span class="hljs-keyword">const</span> requestHandlers = Alexa.SkillBuilders.custom()
-    .addRequestHandlers(
-        <span class="hljs-comment">// LaunchRequestHandler,</span>
-        <span class="hljs-keyword">new</span> DecimalIntentHandler(formsHandler),
-        formsHandler,
-        <span class="hljs-keyword">new</span> NextHandler(formsHandler),
-        SaveFormIntentHandler, <span class="hljs-comment">// Delete to SaveFormIntentHandler</span>
-        ErrorHandler,
-    );
+<span style="color: #008000">// Add request handlers for (default intent handlers omitted for clarify)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">requestHandlers</span><span style="color: #000000"> = </span><span style="color: #001080">Alexa</span><span style="color: #000000">.</span><span style="color: #001080">SkillBuilders</span><span style="color: #000000">.</span><span style="color: #795E26">custom</span><span style="color: #000000">()</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">addRequestHandlers</span><span style="color: #000000">(</span>
+<span style="color: #000000">        </span><span style="color: #008000">// LaunchRequestHandler,</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DecimalIntentHandler</span><span style="color: #000000">(</span><span style="color: #001080">formsHandler</span><span style="color: #000000">),</span>
+<span style="color: #000000">        </span><span style="color: #001080">formsHandler</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">NextHandler</span><span style="color: #000000">(</span><span style="color: #001080">formsHandler</span><span style="color: #000000">),</span>
+<span style="color: #000000">        </span><span style="color: #001080">SaveFormIntentHandler</span><span style="color: #000000">, </span><span style="color: #008000">// Delete to SaveFormIntentHandler</span>
+<span style="color: #000000">        </span><span style="color: #001080">ErrorHandler</span><span style="color: #000000">,</span>
+<span style="color: #000000">    );</span>
 
-<span class="hljs-comment">// Optionally add other API or persistence handlers, then return lambda</span>
-exports.handler = requestHandlers.lambda();</code></pre>
+<span style="color: #008000">// Optionally add other API or persistence handlers, then return lambda</span>
+<span style="color: #267F99">exports</span><span style="color: #000000">.</span><span style="color: #001080">handler</span><span style="color: #000000"> = </span><span style="color: #001080">requestHandlers</span><span style="color: #000000">.</span><span style="color: #795E26">lambda</span><span style="color: #000000">();</span>
+</code></pre>
 				<ol start="3">
 					<li>Add forms</li>
 				</ol>
 				<p>When creating the <code>FormListHandler</code> class you pass a list of forms, these include properties and optional validation as illustrated with this simple two slot form below.</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { WholeNumberValidation } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ask-form-sdk'</span>);
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">WholeNumberValidation</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ask-form-sdk&#039;</span><span style="color: #000000">);</span>
 
-<span class="hljs-keyword">const</span> temperature = {
-    <span class="hljs-attr">name</span>: <span class="hljs-string">'TemperatureIntent'</span>,
-    <span class="hljs-attr">title</span>: <span class="hljs-string">'Temperature Form'</span>,
-    <span class="hljs-attr">prompt</span>: <span class="hljs-function">(<span class="hljs-params">slotNumber</span>) =&gt;</span> slotNumber === <span class="hljs-number">0</span> ? <span class="hljs-string">'Welcome to the form. '</span> : <span class="hljs-string">''</span>,
-    <span class="hljs-attr">slots</span>: [
-        {
-            <span class="hljs-attr">index</span>: <span class="hljs-number">1</span>,
-            <span class="hljs-attr">name</span>: <span class="hljs-string">'slot_three'</span>,
-            <span class="hljs-attr">type</span>: <span class="hljs-string">'AMAZON.NUMBER'</span>,
-            <span class="hljs-attr">prompt</span>: <span class="hljs-string">'What is the temperature (with units)?'</span>,
-            <span class="hljs-attr">reprompt</span>: <span class="hljs-string">'What temperature?'</span>,
-            <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
-            <span class="hljs-attr">validation</span>: [
-                <span class="hljs-keyword">new</span> WholeNumberValidation(<span class="hljs-string">'Please specify temperature as a whole number.'</span>),
-            ],
-        },
-        {
-            <span class="hljs-attr">index</span>: <span class="hljs-number">2</span>,
-            <span class="hljs-attr">name</span>: <span class="hljs-string">'slot_three_units'</span>,
-            <span class="hljs-attr">type</span>: <span class="hljs-string">'DECIMAL_UNITS'</span>, <span class="hljs-comment">// Can we just use the same general UNITS type?</span>
-            <span class="hljs-attr">prompt</span>: <span class="hljs-string">'For what units?'</span>,
-            <span class="hljs-attr">reprompt</span>: <span class="hljs-string">'Is that in "Celsius" or "Fahrenheit"?'</span>,
-            <span class="hljs-attr">required</span>: <span class="hljs-literal">false</span>,
-            <span class="hljs-attr">options</span>: {
-                <span class="hljs-string">'C'</span>: [
-                    <span class="hljs-string">'Celcius'</span>,
-                    <span class="hljs-string">'degree celcius'</span>,
-                    <span class="hljs-string">'degrees celcius'</span>,
-                    <span class="hljs-string">'centigrade'</span>,
-                ],
-                <span class="hljs-string">'F'</span>: [
-                    <span class="hljs-string">'Fahrenheit'</span>,
-                    <span class="hljs-string">'degree fahrenheit'</span>,
-                    <span class="hljs-string">'degrees fahrenheit'</span>,
-                ],
-            },
-            <span class="hljs-attr">conditional</span>: [{
-                <span class="hljs-attr">name</span>: <span class="hljs-string">'slot_three'</span>,
-                <span class="hljs-attr">empty</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Conditional if the slot_three is not empty</span>
-            }],
-        },
-    ],
-    <span class="hljs-attr">confirmation</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-        <span class="hljs-keyword">return</span> <span class="hljs-string">`Okay, would you like to save the temperature?`</span>;
-    },
-    <span class="hljs-attr">delegate</span>: <span class="hljs-string">'SaveFormIntent'</span>,
-    <span class="hljs-attr">samples</span>: [
-        <span class="hljs-string">'record temperature of {slot_three} {slot_three_units}'</span>,
-        <span class="hljs-string">'record temperature of {slot_three}'</span>,
-        <span class="hljs-string">'record temperature'</span>,
-    ],
-};
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">temperature</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;TemperatureIntent&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">title:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Temperature Form&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #795E26">prompt</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">slotNumber</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">slotNumber</span><span style="color: #000000"> === </span><span style="color: #098658">0</span><span style="color: #000000"> ? </span><span style="color: #A31515">&#039;Welcome to the form. &#039;</span><span style="color: #000000"> : </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">slots:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">        {</span>
+<span style="color: #000000">            </span><span style="color: #001080">index:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;slot_three&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;AMAZON.NUMBER&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">prompt:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;What is the temperature (with units)?&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">reprompt:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;What temperature?&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">required:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">validation:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">                </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">WholeNumberValidation</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Please specify temperature as a whole number.&#039;</span><span style="color: #000000">),</span>
+<span style="color: #000000">            ],</span>
+<span style="color: #000000">        },</span>
+<span style="color: #000000">        {</span>
+<span style="color: #000000">            </span><span style="color: #001080">index:</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;slot_three_units&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;DECIMAL_UNITS&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// Can we just use the same general UNITS type?</span>
+<span style="color: #000000">            </span><span style="color: #001080">prompt:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;For what units?&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">reprompt:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Is that in &quot;Celsius&quot; or &quot;Fahrenheit&quot;?&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">required:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">                </span><span style="color: #A31515">&#039;C&#039;</span><span style="color: #001080">:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">                    </span><span style="color: #A31515">&#039;Celcius&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                    </span><span style="color: #A31515">&#039;degree celcius&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                    </span><span style="color: #A31515">&#039;degrees celcius&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                    </span><span style="color: #A31515">&#039;centigrade&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                ],</span>
+<span style="color: #000000">                </span><span style="color: #A31515">&#039;F&#039;</span><span style="color: #001080">:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">                    </span><span style="color: #A31515">&#039;Fahrenheit&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                    </span><span style="color: #A31515">&#039;degree fahrenheit&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                    </span><span style="color: #A31515">&#039;degrees fahrenheit&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                ],</span>
+<span style="color: #000000">            },</span>
+<span style="color: #000000">            </span><span style="color: #001080">conditional:</span><span style="color: #000000"> [{</span>
+<span style="color: #000000">                </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;slot_three&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                </span><span style="color: #001080">empty:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #008000">// Conditional if the slot_three is not empty</span>
+<span style="color: #000000">            }],</span>
+<span style="color: #000000">        },</span>
+<span style="color: #000000">    ],</span>
+<span style="color: #000000">    </span><span style="color: #795E26">confirmation</span><span style="color: #001080">:</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #A31515">`Okay, would you like to save the temperature?`</span><span style="color: #000000">;</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">delegate:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;SaveFormIntent&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">samples:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">        </span><span style="color: #A31515">&#039;record temperature of {slot_three} {slot_three_units}&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #A31515">&#039;record temperature of {slot_three}&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #A31515">&#039;record temperature&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    ],</span>
+<span style="color: #000000">};</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> forms = [temperature];</code></pre>
-				<h3 id="customising-the-form-and-slots-definition">Customising the Form and Slots definition</h3>
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">forms</span><span style="color: #000000"> = [</span><span style="color: #001080">temperature</span><span style="color: #000000">];</span>
+</code></pre>
+				<a href="#customising-the-form-and-slots-definition" id="customising-the-form-and-slots-definition" style="color: inherit; text-decoration: none;">
+					<h3>Customising the Form and Slots definition</h3>
+				</a>
 				<p>The form has a number of slots which you can configure.</p>
 				<ul>
 					<li><code>name</code>: unique name for the form.</li>
@@ -308,10 +332,13 @@ exports.handler = requestHandlers.lambda();</code></pre>
 					</li>
 				</ul>
 				<p>You can customize the form and add new fields and delete/modify existing fields as required by the skill. This can be done by editing the index.js file under lambda/forms folder.</p>
-				<h3 id="code-generating-the-model">Code Generating the model</h3>
+				<a href="#code-generating-the-model" id="code-generating-the-model" style="color: inherit; text-decoration: none;">
+					<h3>Code Generating the model</h3>
+				</a>
 				<p>Once you have made changes or additions to the form definition, you can code generate the model file(en-US). In order to do this, you need to install the ask-form-sdk. The following will install the SDKs globally for code generation, you can also access run locally via <code>node_modules/.bin/ask-form-codegen</code> command.</p>
-				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> my-survey</span>
-<span class="hljs-meta">$</span><span class="bash"> npm install -g ask-form-sdk</span></code></pre>
+				<pre><code class="language-shell"><span style="color: #000000">$ </span><span style="color: #795E26">cd</span><span style="color: #000000"> my-survey</span>
+<span style="color: #000000">$ npm install -g ask-form-sdk</span>
+</code></pre>
 				<p>The code generation tool can take in the following options:</p>
 				<ul>
 					<li>-f : the path to forms</li>
@@ -323,224 +350,87 @@ exports.handler = requestHandlers.lambda();</code></pre>
 				<ul>
 					<li>Have the new form changes applied on top of the existing model file. This can be done by providing the existing model file as the source file:</li>
 				</ul>
-				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> ask-form-codegen -f lambda/forms/ -t skill-package/interactionModels/custom/en-US.json -s skill-package/interactionModels/custom/en-US.json</span></code></pre>
+				<pre><code class="language-shell"><span style="color: #000000">$ ask-form-codegen -f lambda/forms/ -t skill-package/interactionModels/custom/en-US.json -s skill-package/interactionModels/custom/en-US.json</span>
+</code></pre>
 				<ul>
 					<li>Have the model code generated from scratch. To generate the model file form scratch, provide the invocation name and do not provide any source model files :</li>
 				</ul>
-				<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> ask-form-codegen -f lambda/forms/ -t skill-package/interactionModels/custom/en-US.json -i <span class="hljs-string">'my survey'</span></span></code></pre>
+				<pre><code class="language-shell"><span style="color: #000000">$ ask-form-codegen -f lambda/forms/ -t skill-package/interactionModels/custom/en-US.json -i </span><span style="color: #A31515">&#039;my survey&#039;</span>
+</code></pre>
 				<p>This will create a model file with the fields in the form along with few other intents required by the skill.</p>
-				<h2 id="tests">Tests</h2>
+				<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
+					<h2>Tests</h2>
+				</a>
 				<p>The <code>examples</code> folder defines a series of typescript test specifications using the <a href="https://github.com/taimos/ask-sdk-test">ask-sdk-test</a> framework that show cases some of the various features mentioned above.</p>
-				<h2 id="authors">Authors</h2>
+				<a href="#authors" id="authors" style="color: inherit; text-decoration: none;">
+					<h2>Authors</h2>
+				</a>
 				<ul>
 					<li><a href="http://github.com/brightsparc">Julian Bright</a></li>
 					<li><a href="http://github.com/christy-maria">Christy maria Mathew</a></li>
 				</ul>
-				<h2 id="security">Security</h2>
+				<a href="#security" id="security" style="color: inherit; text-decoration: none;">
+					<h2>Security</h2>
+				</a>
 				<p>See <a href="CONTRIBUTING.md#security-issue-notifications">CONTRIBUTING</a> for more information.</p>
-				<h2 id="license">License</h2>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
 				<p>This library is licensed under the MIT-0 License. See the LICENSE.txt file.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apl_templates.html">apl-<wbr>templates</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apl_templates_apl_template_type.html">apl-<wbr>templates/apl-<wbr>template-<wbr>type</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apl_templates_text_list_with_touch.html">apl-<wbr>templates/text-<wbr>list-<wbr>with-<wbr>touch</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/codegen.html">codegen</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/codegen_base_model.html">codegen/base-<wbr>model</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/codegen_model_codegen.html">codegen/model-<wbr>codegen</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/codegen_model_types.html">codegen/model-<wbr>types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/decimal_intent_handler.html">decimal-<wbr>intent-<wbr>handler</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/form_handler_types.html">form-<wbr>handler-<wbr>types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/form_intent_handler.html">form-<wbr>intent-<wbr>handler</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/form_list_handler.html">form-<wbr>list-<wbr>handler</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/form_types.html">form-<wbr>types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/form_validation.html">form-<wbr>validation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="classes/datedayvalidation.html" class="tsd-kind-icon">Date<wbr>Day<wbr>Validation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/decimalintenthandler.html" class="tsd-kind-icon">Decimal<wbr>Intent<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/formintenthandler.html" class="tsd-kind-icon">Form<wbr>Intent<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/formlisthandler.html" class="tsd-kind-icon">Form<wbr>List<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/modelcodegen.html" class="tsd-kind-icon">Model<wbr>Codegen</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/numberrangevalidation.html" class="tsd-kind-icon">Number<wbr>Range<wbr>Validation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/wholenumbervalidation.html" class="tsd-kind-icon">Whole<wbr>Number<wbr>Validation</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/aplprops.html" class="tsd-kind-icon">APLProps</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/alexalocalemodel.html" class="tsd-kind-icon">Alexa<wbr>Locale<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/apltextlisttemplate.html" class="tsd-kind-icon">Apl<wbr>Text<wbr>List<wbr>Template</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/decimalprops.html" class="tsd-kind-icon">Decimal<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/dialog.html" class="tsd-kind-icon">Dialog</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/dialogintent.html" class="tsd-kind-icon">Dialog<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/dialogslot.html" class="tsd-kind-icon">Dialog<wbr>Slot</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/formprops.html" class="tsd-kind-icon">Form<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/formrequesthandler.html" class="tsd-kind-icon">Form<wbr>Request<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/formslotprops.html" class="tsd-kind-icon">Form<wbr>Slot<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/import.html" class="tsd-kind-icon">Import</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/interactionmodel.html" class="tsd-kind-icon">Interaction<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/item.html" class="tsd-kind-icon">Item</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/languagemodel.html" class="tsd-kind-icon">Language<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/languagemodelintent.html" class="tsd-kind-icon">Language<wbr>Model<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/languagemodeltype.html" class="tsd-kind-icon">Language<wbr>Model<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/listitem.html" class="tsd-kind-icon">List<wbr>Item</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/maintemplate.html" class="tsd-kind-icon">Main<wbr>Template</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/primaryaction.html" class="tsd-kind-icon">Primary<wbr>Action</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/prompt.html" class="tsd-kind-icon">Prompt</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/sessionprops.html" class="tsd-kind-icon">Session<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/slot.html" class="tsd-kind-icon">Slot</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/slotconditionprops.html" class="tsd-kind-icon">Slot<wbr>Condition<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/slotvalidationprops.html" class="tsd-kind-icon">Slot<wbr>Validation<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/typevalue.html" class="tsd-kind-icon">Type<wbr>Value</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/typevaluename.html" class="tsd-kind-icon">Type<wbr>Value<wbr>Name</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/userhandler.html" class="tsd-kind-icon">User<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/userprops.html" class="tsd-kind-icon">User<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/variation.html" class="tsd-kind-icon">Variation</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#intentslots" class="tsd-kind-icon">Intent<wbr>Slots</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#slotvalues" class="tsd-kind-icon">Slot<wbr>Values</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#command" class="tsd-kind-icon">command</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#intents" class="tsd-kind-icon">intents</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#types" class="tsd-kind-icon">types</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#getlocaldate" class="tsd-kind-icon">get<wbr>Local<wbr>Date</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#textlistwithtouch" class="tsd-kind-icon">Text<wbr>List<wbr>With<wbr>Touch</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#basemodel" class="tsd-kind-icon">base<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#cancelintent" class="tsd-kind-icon">cancel<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#clearformintent" class="tsd-kind-icon">clear<wbr>Form<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#decimaldialogintent" class="tsd-kind-icon">decimal<wbr>Dialog<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#decimalintent" class="tsd-kind-icon">decimal<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#decimalsigntype" class="tsd-kind-icon">decimal<wbr>Sign<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#decimalunittype" class="tsd-kind-icon">decimal<wbr>Unit<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#dialog" class="tsd-kind-icon">dialog</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#fallbackintent" class="tsd-kind-icon">fallback<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#helpintent" class="tsd-kind-icon">help<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#interactionmodel" class="tsd-kind-icon">interaction<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#languagemodel" class="tsd-kind-icon">language<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#negativesigntype" class="tsd-kind-icon">negative<wbr>Sign<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#nextintent" class="tsd-kind-icon">next<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#percenttype" class="tsd-kind-icon">percent<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#postiviesigntype" class="tsd-kind-icon">postivie<wbr>Sign<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#previousintent" class="tsd-kind-icon">previous<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#reviewformintent" class="tsd-kind-icon">review<wbr>Form<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#stopintent" class="tsd-kind-icon">stop<wbr>Intent</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#textlisttemplates" class="tsd-kind-icon">text<wbr>List<wbr>Templates</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -551,65 +441,22 @@ exports.handler = requestHandlers.lambda();</code></pre>
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
